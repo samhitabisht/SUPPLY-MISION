@@ -1,5 +1,6 @@
 var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
-var packageBody,ground
+var packageBody,ground;
+var side1,side2,side3;
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -31,7 +32,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.7,isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0,isStatic:true});
 	World.add(world, packageBody);
 	
 
@@ -39,6 +40,14 @@ function setup() {
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
 
+ 	side1=createSprite(400,650,100,20);
+ 	side1.shapeColor= color(255,0,0)
+
+ 	side2=createSprite(340,610,20,100);
+ 	side2.shapeColor= color(255,0,0)
+
+ 	side3=createSprite(460,610,20,100);
+ 	side3.shapeColor= color(255,0,0)
 
 	Engine.run(engine);
   
@@ -52,7 +61,7 @@ function draw() {
   packageSprite.y= packageBody.position.y
   keyPressed(); 
   drawSprites();
- 
+
 }
 
 function keyPressed() {
@@ -61,6 +70,8 @@ function keyPressed() {
     packageBody.velocityX= -5; 
   }
 }
+
+
 
 
 
